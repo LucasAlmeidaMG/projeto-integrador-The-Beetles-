@@ -1,12 +1,13 @@
 package com.Beetles.SystemPayout.backEnd.service;
 
 import com.Beetles.SystemPayout.backEnd.domain.Historico;
-import com.Beetles.SystemPayout.backEnd.domain.User;
+import com.Beetles.SystemPayout.backEnd.domain.Aluno;
 import com.Beetles.SystemPayout.backEnd.repository.HistoricoRepository;
 import com.Beetles.SystemPayout.backEnd.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Service
 public class HistoricoService {
@@ -19,8 +20,9 @@ public class HistoricoService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public Historico registrarPagamento(Integer alunoId) {
-        User aluno = userRepository.findById(alunoId)
+        Aluno aluno = userRepository.findById(alunoId)
                 .orElseThrow(() -> new RuntimeException("Id não encontrado"));
         if (aluno.getPlanoEscolhidoId() == null) {
             throw new RuntimeException("O usuário não possui nenhum plano vinculado");
@@ -28,7 +30,6 @@ public class HistoricoService {
         Historico novoHistorico = new Historico();
         novoHistorico.setHistoricoAlunoId(aluno);
         novoHistorico.setValorCobrado(aluno.getPlanoEscolhidoId().getValor());
-        novoHistorico.setDataSolicitacao(LocalDateTime.now());
         novoHistorico.setStatusPagamento("Concluido");
         return historicoRepository.save(novoHistorico);
     }

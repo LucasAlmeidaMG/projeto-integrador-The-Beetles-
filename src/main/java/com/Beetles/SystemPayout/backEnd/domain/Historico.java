@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "historico_pagamento")
@@ -19,10 +19,16 @@ public class Historico {
     private Integer historicoId;
     @ManyToOne
     @JoinColumn(name = "aluno_id")
-    private User historicoAlunoId;
+    private Aluno historicoAlunoId;
+    @Column(precision = 10, scale = 2)
     private BigDecimal valorCobrado;
     private String statusPagamento;
-    private LocalDateTime dataSolicitacao;
-    private LocalDateTime dataConfirmacao;
+    private LocalDate dataSolicitacao;
+    private LocalDate dataConfirmacao;
 
+    public void solicitacao() {
+        if (this.historicoAlunoId != null) {
+            this.dataSolicitacao = this.historicoAlunoId.getDataInicioPlano();
+        }
+    }
 }

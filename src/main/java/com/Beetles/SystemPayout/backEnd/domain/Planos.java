@@ -26,7 +26,9 @@ public class Planos {
     private String categoria;
     @Column(nullable = false)
     private Integer frequenciaAulas;
+    @Column(precision = 10, scale = 2)
     private BigDecimal valor;
     private boolean ativo;
+    @Column(updatable = false)
     private LocalDate dataCriacao;
 }

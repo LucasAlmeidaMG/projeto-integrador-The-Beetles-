@@ -1,8 +1,8 @@
 package com.Beetles.SystemPayout.backEnd.service;
 
-import com.Beetles.SystemPayout.backEnd.domain.User;
+import com.Beetles.SystemPayout.backEnd.domain.Aluno;
 import com.Beetles.SystemPayout.backEnd.repository.UserRepository;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,25 +19,27 @@ public class UserService {
 
     // Aqui estou criando um metodo para ver todos os usuários do sistema
 
-    public List<User> showUsers() {
+    public List<Aluno> showUsers() {
         return repository.findAll();
     }
 
     // Já esse metodo é para ver um usuário pelo Id dele
 
-    public User showUserById(/* Aqui é onde colocamos os parametros do metodo */ Integer id) {
+    public Aluno showUserById(/* Aqui é onde colocamos os parametros do metodo */ Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Id not exist"));
     }
 
     // Esse é para criar um novo usuário no sistema
 
-    public User saveUser(User user) {
-        return repository.save(user);
+    @Transactional
+    public Aluno saveUser(Aluno aluno) {
+        return repository.save(aluno);
     }
 
     // Esse é para deletar um usuário do sistema pelo Id
 
+    @Transactional
     public void deleteUserById(Integer id) {
         if (!repository.existsById(id)) {
         throw new RuntimeException("Não foi possível deletar o Usuário: Id invalido");
@@ -46,17 +48,18 @@ public class UserService {
 }
     // Esse é para atualizar os dados do usuário
 
-    public User updateUser(Integer id, User user){
-        User userExist = repository.findById(id)
+    @Transactional
+    public Aluno updateUser(Integer id, Aluno aluno){
+        Aluno alunoExist = repository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Id Not Exist"));
-            if(userExist.getNome() != null){
-            userExist.setNome(user.getNome());}
-            if (userExist.getTelefone() != null){
-            userExist.setTelefone(user.getTelefone());}
-            if (userExist.getStatus() != null){
-            userExist.setStatus(user.getStatus());}
-            if (userExist.getPlanoEscolhidoId() != null){
-            userExist.setPlanoEscolhidoId(user.getPlanoEscolhidoId());}
-            return repository.save(userExist);
+            if(aluno.getNome() != null){
+            alunoExist.setNome(aluno.getNome());}
+            if (aluno.getTelefone() != null){
+            alunoExist.setTelefone(aluno.getTelefone());}
+            if (aluno.getStatus() != null){
+            alunoExist.setStatus(aluno.getStatus());}
+            if (aluno.getPlanoEscolhidoId() != null){
+            alunoExist.setPlanoEscolhidoId(aluno.getPlanoEscolhidoId());}
+            return repository.save(alunoExist);
     }
 }

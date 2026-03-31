@@ -20,7 +20,7 @@ Classe de criação de usuários normal, aqui é onde está a os atributos do us
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Aluno {
     /*
     Essa abaixo é uma geração automatica do Id do usuário
     */
@@ -40,9 +40,12 @@ public class User {
     private LocalDate diaVencimento;
     private LocalDate dataProximoVencimento;
     private LocalDate dataInicioPlano;
+    @Column(updatable = false)
     private LocalDate dataCadastro;
 
     public void transformarTelefone() {
-        this.telefone = this.telefone + "@ctjsfightuba.com.br";
+        if (this.telefone != null && !this.telefone.contains("@")) {
+            this.telefone = this.telefone + "@ctjsfightuba.com.br";
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.Beetles.SystemPayout.backEnd.controller;
 
-import com.Beetles.SystemPayout.backEnd.domain.User;
+import com.Beetles.SystemPayout.backEnd.domain.Aluno;
 import com.Beetles.SystemPayout.backEnd.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,27 +19,27 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<User> saveUsers(@RequestBody User user){
-            User savedUser = userService.saveUser(user);
-            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    public ResponseEntity<Aluno> saveUsers(@RequestBody Aluno aluno){
+            Aluno savedAluno = userService.saveUser(aluno);
+            return new ResponseEntity<>(savedAluno, HttpStatus.CREATED);
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<List<User>> showAllUsers(){
-            List<User> user = userService.showUsers();
-            return ResponseEntity.ok(user);
+    public ResponseEntity<List<Aluno>> showAllUsers(){
+            List<Aluno> aluno = userService.showUsers();
+            return ResponseEntity.ok(aluno);
     }
 
     @GetMapping("/getbyid/{id}")
-    public ResponseEntity<User> showIdUser(@PathVariable Integer id){
-            User user = userService.showUserById(id);
-            return ResponseEntity.ok(user);
+    public ResponseEntity<Aluno> showIdUser(@PathVariable Integer id){
+            Aluno aluno = userService.showUserById(id);
+            return ResponseEntity.ok(aluno);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User user){
-            User userUp = userService.updateUser(id, user);
-            return new ResponseEntity<>(userUp, HttpStatus.OK);
+    public ResponseEntity<Aluno> updateUser(@PathVariable Integer id, @RequestBody Aluno aluno){
+            Aluno alunoUp = userService.updateUser(id, aluno);
+            return new ResponseEntity<>(alunoUp, HttpStatus.OK);
     }
 
     @DeleteMapping("/deletebyid/{id}")
