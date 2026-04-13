@@ -3,8 +3,10 @@ package com.Beetles.systempayout.backend.aluno.model;
 import com.Beetles.systempayout.backend.plano.model.Planos;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 
@@ -36,19 +38,22 @@ public class Aluno {
     @ManyToOne
     @JoinColumn(name = "plano_id")
     private Planos planoEscolhidoId;
-    private boolean primeiroAcesso;
+    private boolean primeiroAcesso = true;
     private String status;
-    private LocalDate diaVencimento;
-    private LocalDate dataProximoVencimento;
-    private LocalDate dataInicioPlano;
+    private LocalDateTime diaVencimento;
+    private LocalDateTime dataProximoVencimento;
+    @CreationTimestamp
+    private LocalDateTime dataInicioPlano;
     @Column(updatable = false)
-    private LocalDate dataCadastro;
+    @CreationTimestamp
+    private LocalDateTime dataCadastro;
 
     public void transformarTelefone() {
         if(this.telefone != null && !this.telefone.contains("@")) {
             this.telefone = this.telefone + "@ctjsfightuba.com.br";
         }
     }
+
     public void calcularVencimento(){
         if(this.dataInicioPlano == null){
             throw new RuntimeException("O usuário não possui um plano cadastrado");

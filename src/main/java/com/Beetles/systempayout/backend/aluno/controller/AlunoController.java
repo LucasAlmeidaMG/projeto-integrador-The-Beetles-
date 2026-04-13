@@ -1,6 +1,6 @@
 package com.Beetles.systempayout.backend.aluno.controller;
 
-import com.Beetles.systempayout.backend.aluno.model.Aluno;
+import com.Beetles.systempayout.backend.aluno.DTO.AlunoDTO;
 import com.Beetles.systempayout.backend.aluno.service.AlunoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,26 +19,29 @@ public class AlunoController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Aluno> saveUsers(@RequestBody Aluno aluno){
-            Aluno savedAluno = alunoService.saveUser(aluno);
+    public ResponseEntity<AlunoDTO> saveUser(@RequestBody AlunoDTO alunoDTO){
+            AlunoDTO savedAluno = alunoService.saveUser(alunoDTO);
             return new ResponseEntity<>(savedAluno, HttpStatus.CREATED);
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<List<Aluno>> showAllUsers(){
-            List<Aluno> aluno = alunoService.showUsers();
+    public ResponseEntity<List<AlunoDTO>> getAllUsers(){
+            List<AlunoDTO> aluno = alunoService.showUsers();
             return ResponseEntity.ok(aluno);
     }
 
     @GetMapping("/getbyid/{id}")
-    public ResponseEntity<Aluno> showIdUser(@PathVariable Integer id){
-            Aluno aluno = alunoService.showUserById(id);
+    public ResponseEntity<AlunoDTO> getUserById(@PathVariable Integer id){
+            AlunoDTO aluno = alunoService.showUserById(id);
+            if (aluno == null) {
+                return ResponseEntity.notFound().build();
+            }
             return ResponseEntity.ok(aluno);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Aluno> updateUser(@PathVariable Integer id, @RequestBody Aluno aluno){
-            Aluno alunoUp = alunoService.updateUser(id, aluno);
+    public ResponseEntity<AlunoDTO> updateUser(@PathVariable Integer id, @RequestBody AlunoDTO aluno){
+            AlunoDTO alunoUp = alunoService.updateUser(id, aluno);
             return new ResponseEntity<>(alunoUp, HttpStatus.OK);
     }
 

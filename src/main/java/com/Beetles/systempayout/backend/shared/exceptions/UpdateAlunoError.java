@@ -1,4 +1,4 @@
-package com.Beetles.systempayout.backend.aluno.exception;
+package com.Beetles.systempayout.backend.shared.exceptions;
 
 public class UpdateAlunoError extends RuntimeException {
     public UpdateAlunoError(String message) {

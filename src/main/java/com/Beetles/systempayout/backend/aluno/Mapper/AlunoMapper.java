@@ -2,39 +2,37 @@ package com.Beetles.systempayout.backend.aluno.Mapper;
 
 import com.Beetles.systempayout.backend.aluno.DTO.AlunoDTO;
 import com.Beetles.systempayout.backend.aluno.model.Aluno;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AlunoMapper {
 
-    public Aluno map (AlunoDTO alunoDTO){
+    public Aluno map(AlunoDTO alunoDTO){
         Aluno aluno = new Aluno();
 
-        aluno.setAlunoId(alunoDTO.getAlunoId());
         aluno.setNome(alunoDTO.getNome());
-        aluno.setDataCadastro(alunoDTO.getDataCadastro());
         aluno.setStatus(alunoDTO.getStatus());
         aluno.setTelefone(alunoDTO.getTelefone());
-        aluno.setDataInicioPlano(alunoDTO.getDataInicioPlano());
-        aluno.setDiaVencimento(alunoDTO.getDiaVencimento());
-        aluno.setDataProximoVencimento(alunoDTO.getDataProximoVencimento());
         aluno.setPrimeiroAcesso(alunoDTO.isPrimeiroAcesso());
         aluno.setPlanoEscolhidoId(alunoDTO.getPlanoEscolhidoId());
-
+        aluno.setDiaVencimento(alunoDTO.getDiaVencimento());
+        aluno.setDataProximoVencimento(alunoDTO.getDataProximoVencimento());
+        aluno.setDataInicioPlano(alunoDTO.getDataInicioPlano());
         return aluno;
     }
 
-    public AlunoDTO mapDTO (Aluno aluno){
+    public AlunoDTO map(Aluno aluno){
         AlunoDTO alunoDTO = new AlunoDTO();
 
-        alunoDTO.setAlunoId(aluno.getAlunoId());
         alunoDTO.setPrimeiroAcesso(aluno.isPrimeiroAcesso());
         alunoDTO.setNome(aluno.getNome());
-        alunoDTO.setDataCadastro(aluno.getDataCadastro());
         alunoDTO.setStatus(aluno.getStatus());
         alunoDTO.setTelefone(aluno.getTelefone());
-        alunoDTO.setDiaVencimento(aluno.getDiaVencimento());
-        alunoDTO.setDataInicioPlano(aluno.getDataInicioPlano());
-        alunoDTO.setDataProximoVencimento(aluno.getDataProximoVencimento());
         alunoDTO.setPlanoEscolhidoId(aluno.getPlanoEscolhidoId());
+        alunoDTO.setDataCadastro(aluno.getDataCadastro());
+        alunoDTO.setDiaVencimento(aluno.getDiaVencimento());
+        alunoDTO.setDataProximoVencimento(aluno.getDataProximoVencimento());
+        alunoDTO.setDataInicioPlano(aluno.getDataInicioPlano());
 
         return alunoDTO;
     }

@@ -5,21 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class AlunoDTO {
-   private Integer alunoId;
     private String telefone;
     private String nome;
     private Planos planoEscolhidoId;
-    private boolean primeiroAcesso;
     private String status;
-    private LocalDate diaVencimento;
-    private LocalDate dataProximoVencimento;
-    private LocalDate dataInicioPlano;
-    private LocalDate dataCadastro;
+    private LocalDateTime dataCadastro;
+    private boolean primeiroAcesso;
+    private LocalDateTime diaVencimento;
+    private LocalDateTime dataProximoVencimento;
+    private LocalDateTime dataInicioPlano;
 }
