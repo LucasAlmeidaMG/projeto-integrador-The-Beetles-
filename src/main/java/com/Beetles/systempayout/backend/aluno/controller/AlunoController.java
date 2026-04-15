@@ -47,8 +47,8 @@ public class AlunoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable UUID id){
+    public void deleteUser(@PathVariable UUID id){
             alunoService.deleteUserById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 }

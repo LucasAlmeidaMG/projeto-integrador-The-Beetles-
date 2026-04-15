@@ -1,11 +1,10 @@
 package com.Beetles.systempayout.backend.aluno.model;
 
-import com.Beetles.systempayout.backend.plano.model.Planos;
+import com.Beetles.systempayout.backend.plano.model.Plano;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -38,7 +37,7 @@ public class Aluno {
     private String nome;
     @ManyToOne
     @JoinColumn(name = "plano_id")
-    private Planos planoEscolhidoId;
+    private Plano planoEscolhidoId;
     private boolean primeiroAcesso = true;
     private String status;
     private LocalDateTime diaVencimento;

@@ -1,6 +1,6 @@
 package com.Beetles.systempayout.backend.aluno.DTO;
 
-import com.Beetles.systempayout.backend.plano.model.Planos;
+import com.Beetles.systempayout.backend.plano.model.Plano;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class AlunoDTO {
     private UUID alunoId;
     private String telefone;
     private String nome;
-    private Planos planoEscolhidoId;
+    private Plano planoEscolhidoId;
     private String status;
     private LocalDateTime dataCadastro;
     private boolean primeiroAcesso;

@@ -7,6 +7,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "planos")
@@ -14,11 +15,11 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Planos {
+public class Plano {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false, unique = true, name = "plano_id")
-    private Integer planoId;
+    private UUID planoId;
     @Column(nullable = false)
     private String nome;
     @OneToMany(mappedBy = "planoEscolhidoId",fetch = FetchType.LAZY)
