@@ -2,12 +2,13 @@ package com.Beetles.systempayout.backend.aluno.service;
 
 import com.Beetles.systempayout.backend.aluno.model.Aluno;
 import com.Beetles.systempayout.backend.aluno.repository.AlunoRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 
-@org.springframework.stereotype.Service
+@Service
 
 public class AlunoService {
 

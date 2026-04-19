@@ -2,11 +2,11 @@ package com.Beetles.systempayout.backend.historico.model;
 
 import com.Beetles.systempayout.backend.aluno.model.Aluno;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.Beetles.systempayout.backend.shared.utils.DateTimeLocal.pegarHorarioAtual;
@@ -15,6 +15,7 @@ import static com.Beetles.systempayout.backend.shared.utils.DateTimeLocal.pegarH
 @Table(name = "historico_pagamento")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -23,22 +24,38 @@ public class Historico {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false, unique = true)
     private UUID historicoId;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "aluno_id")
+    @ToString.Exclude
     private Aluno aluno;
+
     @Column(precision = 10, scale = 2, nullable = false)
+    @PositiveOrZero(message = "O valor cobrado não pode ser negativo")
     private BigDecimal valorCobrado;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String statusPagamento;
+    private StatusPagamento statusPagamento;
+
     @Column(nullable = false, updatable = false)
-    private LocalDate dataSolicitacao;
-    private LocalDate dataConfirmacao;
+    private LocalDateTime dataSolicitacao;
+
+    @Column(updatable = false)
+    private LocalDateTime dataConfirmacao;
 
     @PrePersist
     public void onCreated(){
         this.dataSolicitacao = pegarHorarioAtual();
-        if (statusPagamento == null){
-            this.statusPagamento = "PENDENTE";
+        if(statusPagamento == null){
+        this.statusPagamento = StatusPagamento.PENDENTE;
         }
+    }
+
+    private enum StatusPagamento{ PENDENTE, PAGO, CANCELADO, FALHOU};
+
+    public void dataConfirmation(){
+        this.dataConfirmacao = pegarHorarioAtual();
+        this.statusPagamento = StatusPagamento.PAGO;
     }
 }
