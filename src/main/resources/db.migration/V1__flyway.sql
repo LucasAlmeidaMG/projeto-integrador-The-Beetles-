@@ -16,6 +16,7 @@ CREATE TABLE alunos(
     nome VARCHAR(255) NOT NULL,
     senha VARCHAR(20) NOT NULL,
     plano_escolhido_id UUID REFERENCES planos(plano_id) NULL,
+    primeiro_acesso BOOLEAN,
     status VARCHAR(255),
     dia_vencimento TIMESTAMP,
     data_proximo_vencimento TIMESTAMP,
