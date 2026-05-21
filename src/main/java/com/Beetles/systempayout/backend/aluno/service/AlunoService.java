@@ -4,7 +4,6 @@ import com.Beetles.systempayout.backend.aluno.controller.request.AlunoRequest;
 import com.Beetles.systempayout.backend.aluno.model.Aluno;
 import com.Beetles.systempayout.backend.aluno.repository.AlunoRepository;
 import com.Beetles.systempayout.backend.shared.exception.IdNotFoundException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,11 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class AlunoService{
 
     private final AlunoRepository repository;
     private final PasswordEncoder passwordEncoder;
+
+    public AlunoService(AlunoRepository repository, PasswordEncoder passwordEncoder) {
+        this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Transactional(readOnly = true)
     public Page<Aluno> listUsers(Pageable pageable) {
@@ -37,10 +40,8 @@ public class AlunoService{
         Aluno aluno = new Aluno();
 
         aluno.setNome(request.nome());
-        aluno.setEmail(request.email());
-        aluno.setNumero(request.numero());
-        aluno.setSenha(passwordEncoder.encode(request.senha()));
         aluno.setPlanoEscolhidoId(request.plano());
+        aluno.setStatus(request.status());
 
         return repository.save(aluno);
     }
@@ -62,14 +63,8 @@ public class AlunoService{
         if (request.nome() != null) {
             aluno.setNome(request.nome());
         }
-        if (request.numero() != null){
-            aluno.setNumero(request.numero());
-        }
-        if (request.email() != null) {
-            aluno.setEmail(request.email());
-        }
-        if (request.senha() != null){
-            aluno.setSenha(passwordEncoder.encode(request.senha()));
+        if (request.status() != null){
+            aluno.setStatus(request.status());
         }
         if (request.plano() != null) {
             aluno.setPlanoEscolhidoId(request.plano());

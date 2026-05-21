@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Builder
 public record AlunoResponse(String nome,
-                            String email,
                             String planoEscolhidoId,
                             Enum_Status status,
                             LocalDateTime diaVencimento) {
@@ -16,7 +15,6 @@ public record AlunoResponse(String nome,
     public static AlunoResponse toAlunoResponse(Aluno aluno){
         return new AlunoResponse(
                 aluno.getNome(),
-                aluno.getEmail(),
                 aluno.getPlanoEscolhidoId().getNome(),
                 aluno.getStatus(),
                 aluno.getDiaVencimento()

@@ -22,6 +22,14 @@ public class AlunoController {
         this.service = service;
     }
 
+    @GetMapping("/register")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<AlunoResponse> registerAluno(@Valid @RequestBody AlunoRequest request){
+        var aluno = service.registerUser(request);
+        var response = AlunoResponse.toAlunoResponse(aluno);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<AlunoResponse>> getAllUsers(@RequestParam Pageable pageable){

@@ -43,7 +43,7 @@ public class TokenService {
                 .verify(token)
                 .getSubject();
         } catch (JWTVerificationException exception){
-            return exception.getMessage();        }
+            return null;        }
     }
     private Instant genExpireAt(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));

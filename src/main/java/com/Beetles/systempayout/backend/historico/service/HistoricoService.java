@@ -7,12 +7,10 @@ import com.Beetles.systempayout.backend.historico.model.Historico;
 import com.Beetles.systempayout.backend.historico.repository.HistoricoRepository;
 import com.Beetles.systempayout.backend.shared.exception.IdNotFoundException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service

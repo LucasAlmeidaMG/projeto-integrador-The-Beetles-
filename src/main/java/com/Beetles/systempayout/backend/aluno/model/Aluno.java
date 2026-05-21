@@ -6,13 +6,8 @@ import com.Beetles.systempayout.backend.shared.enums.Enums_roles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,24 +17,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "planoEscolhidoId")
-public class Aluno implements UserDetails {
+public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "aluno_id",nullable = false, unique = true)
     private UUID alunoId;
 
-    @Column(unique = true, nullable = false)
-    private String email;
-
-    @Column(unique = true, nullable = false)
-    private String numero;
-
     @Column(nullable = false)
     private String nome;
-
-    @Column(nullable = false, length = 20)
-    private String senha;
 
     @ManyToOne
     @JoinColumn(name = "plano_escolhido_id", nullable = true)
@@ -74,40 +60,5 @@ public class Aluno implements UserDetails {
         }else{
             diaVencimento = dataInicioPlano.plusMonths(1);
         }
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.getRole()));
-    }
-
-    @Override
-    public String getPassword() {
-        return senha;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }

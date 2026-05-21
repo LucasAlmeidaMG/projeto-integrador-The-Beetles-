@@ -25,7 +25,7 @@ public class Admin implements UserDetails {
     private UUID adminId;
 
     @Column(name = "role")
-    private Enums_roles role = Enums_roles.ADMIN;
+    private Enums_roles role = null;
 
     @Column(nullable = false)
     private String nome;

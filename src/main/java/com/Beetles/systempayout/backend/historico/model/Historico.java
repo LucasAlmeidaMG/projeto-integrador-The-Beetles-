@@ -30,17 +30,17 @@ public class Historico {
     @ToString.Exclude
     private Aluno aluno;
 
-    @Column(precision = 10, scale = 2, nullable = false)
+    @Column(name = "valor_cobrado", precision = 10, scale = 2, nullable = false)
     @PositiveOrZero(message = "O valor cobrado não pode ser negativo")
     private BigDecimal valorCobrado;
 
-    @Column(nullable = false)
+    @Column(name = "status_pagamento", nullable = false)
     private Enum_Status statusPagamento;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "data_solicitacao", nullable = false, updatable = false)
     private LocalDateTime dataSolicitacao;
 
-    @Column(updatable = false)
+    @Column(name = "data_confirmacao", updatable = false)
     private LocalDateTime dataConfirmacao;
 
     @PrePersist
