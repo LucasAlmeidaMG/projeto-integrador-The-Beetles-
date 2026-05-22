@@ -36,6 +36,7 @@ public class Plano {
     @Column(precision = 10, scale = 2)
     private BigDecimal valor;
 
+    @Column
     private boolean ativo;
 
     @Column(updatable = false)

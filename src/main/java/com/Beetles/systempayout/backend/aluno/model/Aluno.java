@@ -31,8 +31,6 @@ public class Aluno {
     @JoinColumn(name = "plano_escolhido_id", nullable = true)
     private Plano planoEscolhidoId;
 
-    private boolean primeiroAcesso;
-
     private Enum_Status status;
 
     private LocalDateTime diaVencimento;
