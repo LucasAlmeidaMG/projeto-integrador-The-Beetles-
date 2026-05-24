@@ -6,6 +6,7 @@ import com.Beetles.systempayout.backend.historico.service.HistoricoService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,9 +41,9 @@ public class HistoricoController {
 
     @GetMapping("/findAll")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Page<HistoricoResponse>> buscarAll(@RequestParam Pageable pageable){
-        var response = service.verTodosHistoricos(pageable)
-                .map(HistoricoResponse::toHistoricoResponse);
+    public ResponseEntity<Page<HistoricoResponse>> buscarAll(
+            @PageableDefault(size = 10, page = 0) Pageable pageable){
+        var response = service.verTodosHistoricos(pageable);
         return ResponseEntity.ok(response);
     }
 

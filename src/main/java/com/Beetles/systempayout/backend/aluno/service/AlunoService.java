@@ -1,6 +1,7 @@
 package com.Beetles.systempayout.backend.aluno.service;
 
 import com.Beetles.systempayout.backend.aluno.controller.request.AlunoRequest;
+import com.Beetles.systempayout.backend.aluno.controller.response.AlunoResponse;
 import com.Beetles.systempayout.backend.aluno.model.Aluno;
 import com.Beetles.systempayout.backend.aluno.repository.AlunoRepository;
 import com.Beetles.systempayout.backend.plano.model.Plano;
@@ -25,8 +26,9 @@ public class AlunoService{
     }
 
     @Transactional(readOnly = true)
-    public Page<Aluno> listUsers(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<AlunoResponse> listUsers(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(AlunoResponse::toAlunoResponse);
     }
 
 
