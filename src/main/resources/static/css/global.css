@@ -62,9 +62,13 @@ footer {
 #zap {
     color: #25d366;
 }
+table {
+    width: 60%;
+}
 th{
-    padding:1%;
+    padding:2%;
 }
 td{
-    padding:1%;
+    padding:2%;
+    text-align: center;
 }
