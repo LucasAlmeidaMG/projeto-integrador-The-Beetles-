@@ -27,14 +27,14 @@ public class AdminService{
     public Admin registrar(AdminRequest request){
         Admin admin = new Admin();
         admin.setNome(request.nome());
-        admin.setEmail(request.email());
+        admin.setEmail(request.email().toLowerCase());
         admin.setSenha(passwordEncoder.encode(request.senha()));
         return repository.save(admin);
     }
 
     @Transactional(readOnly = true)
     public AdminResponse buscarPorEmail(String email){
-        return repository.findByEmail(email)
+        return repository.findByEmail(email.toLowerCase())
             .map(AdminResponse::toAdminResponse)
                 .orElseThrow(()-> new EmailNotFoundException(email));
     }

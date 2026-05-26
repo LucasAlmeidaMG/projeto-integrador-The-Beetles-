@@ -39,6 +39,13 @@ public class Admin implements UserDetails {
     @Column(nullable = false)
     private String senha;
 
+    public Admin(String nome, String email, String senha, Enums_roles roles){
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.role = Enums_roles.ADMIN;
+    }
+
     @PrePersist
     public void roles(){
         if(this.role == null){

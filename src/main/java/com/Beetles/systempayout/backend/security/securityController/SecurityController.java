@@ -55,7 +55,7 @@ public class SecurityController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest request){
-        var userAndPass = new UsernamePasswordAuthenticationToken(request.email(), request.senha());
+        var userAndPass = new UsernamePasswordAuthenticationToken(request.email().toLowerCase(), request.senha());
         var auth = authenticationManager.getObject().authenticate(userAndPass);
         var userDetails = (UserDetails) auth.getPrincipal();
         var token = tokenService.generateToken(userDetails);

@@ -21,7 +21,7 @@ public class SecurityService implements UserDetailsService {
     }
 
     public String alterarSenha(AlterarSenhaRequest request){
-        var admin = adminRepository.findByEmail(request.email())
+        var admin = adminRepository.findByEmail(request.email().toLowerCase())
             .orElseThrow(() -> new RuntimeException("email não encontrado"));
             
         admin.setSenha(encoder.encode(request.senha()));
@@ -31,7 +31,7 @@ public class SecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        var admin = adminRepository.findByEmail(email);
+        var admin = adminRepository.findByEmail(email.toLowerCase());
 
         if (admin.isPresent()) {
             return admin.get();
