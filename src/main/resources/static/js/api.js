@@ -11,7 +11,8 @@ async function request(endpoint, options = {}) {
         ...options,
         headers: { ...headers, ...options.headers }
     });
-    const data = await response.json()
+    const text = await response.text();
+    const data = text ? JSON.parse(text): {};
     if (!response.ok) {
         throw new Error((data.message) || "Erro no sistema")
     }
@@ -41,7 +42,8 @@ const Api = {
     getPagamentos: () => request("historico/findAll"),
     getPagamentosAluno: (id) => request(`historico/getAllByAluno/${id}`),
     getPagamentoPorId: (id) => request(`historico/${id}`), 
-    confirmarPagamento: (id) => request(`historico/confirmar/${id}`, { method: "POST", body: JSON.stringify(id)})
+    confirmarPagamento: (id) => request(`historico/confirmar/${id}`, { method: "POST", body: JSON.stringify(id)}),
+    deletarPagamento: (id) => request(`historico/deletar/${id}`, { method: "DELETE" })
 }
 function formatarData(dataISO) {
     if (!dataISO) return "—";

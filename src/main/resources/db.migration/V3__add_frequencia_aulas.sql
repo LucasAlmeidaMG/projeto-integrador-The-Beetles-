@@ -1,0 +1,1 @@
+ALTER TABLE planos ADD COLUMN frequencia_aulas INT NOT NULL DEFAULT 0;
