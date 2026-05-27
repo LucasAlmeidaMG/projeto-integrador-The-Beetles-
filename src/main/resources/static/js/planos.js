@@ -36,10 +36,14 @@ if (frm) {
     });
 }
 
-async function getPlanos() {
+
+let paginaPlanos = 0;
+async function getPlanos(pagina = 0) {
     try {
-        const planos = await Api.getPlanos();
+        paginaPlanos = pagina;
+        const planos = await Api.getPlanos(pagina);
         const lista = planos.content ?? [];
+        const totalPaginas = planos.totalPages ?? 1;
 
         let tabHtml = `
             <thead>
@@ -81,6 +85,7 @@ async function getPlanos() {
 
         tabHtml += `</tbody>`;
         tabelaPlanos.innerHTML = tabHtml;
+        renderPaginacao("paginacaoPlanos", paginaPlanos, totalPaginas, getPlanos);
     } catch (error) {
         alert(error?.message || "Erro ao carregar planos");
     }

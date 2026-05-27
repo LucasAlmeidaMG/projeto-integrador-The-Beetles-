@@ -1,10 +1,11 @@
 const tabelaAlunos = document.querySelector("#tabelaAlunos")
-
-async function getAlunos() {
+let paginaAlunos = 0;
+async function getAlunos(pagina = 0) {
     try {
-        const alunos = await Api.getAlunos();
+        paginaAlunos = pagina;
+        const alunos = await Api.getAlunos(pagina);
         const lista = alunos.content ?? [];
-
+        const totalPaginas = alunos.totalPages ?? 1;
         let tabHtml =
             `<thead>
                 <th scope="col">Nome</th>
@@ -34,6 +35,7 @@ async function getAlunos() {
 
         tabHtml += `</tbody>`;
         tabelaAlunos.innerHTML = tabHtml;
+        renderPaginacao("paginacaoAlunos", paginaAlunos, totalPaginas, getAlunos);
     } catch (error) {
         alert(error?.message || "Erro ao carregar alunos");
     }
