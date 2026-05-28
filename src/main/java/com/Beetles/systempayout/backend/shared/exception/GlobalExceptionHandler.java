@@ -22,20 +22,8 @@ public class GlobalExceptionHandler{
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) {
-        ErrorResponse response = ErrorResponse.builder()
-                .message(ex.getMessage())
-                .status(HttpStatus.NOT_FOUND.value())
-                .build();
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-    }
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleUncaughtException(Exception ex) {
-        ErrorResponse response = ErrorResponse.builder()
-                .message(ex.getMessage())
-                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .build();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    @ExceptionHandler(EmailNotFoundException.class)
+    public ProblemDetail EmailNotFoundHandler(EmailNotFoundException e){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
     }
 }
