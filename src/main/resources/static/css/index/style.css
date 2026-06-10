@@ -15,6 +15,15 @@ button:hover {
     text-decoration-color: white;
 }
 
+#abatopo > img{
+    width: 13vh;
+    height: 8vh;
+}
+
+.login-nav {
+    display: flex;
+}
+
 .opções {
     padding: 3%;
     margin: 3% 0% 3% 3%;
@@ -76,7 +85,7 @@ button:hover {
     padding: 10%;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to bottom, transparent 70%, #0c0c0c), url("../../elements/bg-n1.png") center/cover;
+    background: linear-gradient(to bottom, transparent 70%, #0c0c0c), url("../../elements/fundo-banner.png") center/cover;
 
     display: flex;
     flex-direction: column;
@@ -86,8 +95,10 @@ button:hover {
     text-align: center;
 }
 
-#sobre h2 {
-    padding-bottom: 1.5%;
+#sobre-h2 {
+    color: white;
+    background-color: #080535;
+    padding: 10px 30px;
 }
 
 #planos {
