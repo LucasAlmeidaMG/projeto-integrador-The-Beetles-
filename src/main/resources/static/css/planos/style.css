@@ -1,110 +1,244 @@
-html, body {
-    min-height: 100vh;
-}
-
-body {
-    width: 100%;
-    color: white;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 5%;
-}
-
-#abatopo {
-    justify-content: center;
-    gap: 5%;
-}
-
-h2 {
-    margin: 1% 0%;
-    font-weight: 800;
-    word-spacing: 15%;
-}
+/* CONTEÚDO PRINCIPAL */
 
 .main {
-    width: 70%;
-    gap: 4%;
-}
+    width: min(1200px, 90%);
 
-#registrar-planos {
-    padding: 2%;
-    min-height: 35vh;
-    width: 50%;
-    border-radius: 10px;
-    background-color: #f3b502;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 5px;
+    margin: 3rem auto;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
-    margin: 0 auto;
+    gap: 2rem;
 }
 
-#inNome, #inCat, #inFreq, #inValor {
-    padding: 0% 3%;
-    margin-bottom: 1vh;
-    min-height: 4vh;
-    width: 100%;
-    border: 1px solid #f2d80c;
-    border-radius: 15px;
-    outline: none;
-    font-size: 12px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 5px;
-}
+/* TÍTULOS */
 
-#inStatusPlano, #inSalvar {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    min-height: 4vh;
-    width: 100%;
-    border: 1px solid white;
-    border-radius: 15px;
-    outline: none;
-    background-color: #fdc103;
-    color: white;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 5px;
-
+.main h2 {
     text-align: center;
+
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    margin-bottom: 1rem;
 }
+
+.main h2::after {
+    content: "";
+
+    display: block;
+
+    width: 120px;
+    height: 4px;
+
+    margin: 12px auto 0;
+
+    background-color: #0066ff;
+
+    border-radius: 999px;
+}
+
+/* CARD DE REGISTRO */
+
+#registrar-planos {
+    background: rgba(0, 0, 0, 0.8);
+
+    border: 1px solid rgba(0, 102, 255, 0.25);
+    border-radius: 25px;
+
+    padding: 2.5rem;
+
+    box-shadow:
+        0 0 30px rgba(0, 102, 255, 0.2),
+        0 0 80px rgba(0, 102, 255, 0.05);
+}
+
+#registrar-planos form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1.2rem 2rem;
+}
+
+#registrar-planos p {
+    margin-bottom: 0.5rem;
+
+    font-weight: 600;
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* INPUTS */
+
+#registrar-planos input[type="text"],
+#registrar-planos input[type="number"],
+#registrar-planos select {
+    width: 100%;
+
+    padding: 1rem;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(0, 102, 255, 0.25);
+    border-radius: 12px;
+
+    color: white;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+#registrar-planos input[type="text"]:focus,
+#registrar-planos input[type="number"]:focus,
+#registrar-planos select:focus {
+    border-color: #0066ff;
+
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.25);
+}
+
+/* BOTÃO */
 
 #inSalvar {
-    font-weight: bolder;
+    grid-column: 1 / -1;
+
+    margin-top: 1rem;
+
+    padding: 1rem;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #0066ff;
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
 #inSalvar:hover {
-    cursor: pointer;
-    background-color: #ffe800;
+    background-color: #0052cc;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.25);
 }
+
+/* SEÇÃO DE PLANOS */
 
 #section-planos {
-    width: 100%;
-
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    gap: 1.5rem;
 }
 
-#tabelaPlanos th,
-#tabelaPlanos td {
-    padding: 8px 10px;
+/* TABELA */
+
+.table-conteiner {
+    overflow-x: auto;
+
+    background: rgba(0, 0, 0, 0.8);
+
+    border: 1px solid rgba(0, 102, 255, 0.25);
+    border-radius: 25px;
+
+    padding: 1.5rem;
+
+    box-shadow:
+        0 0 30px rgba(0, 102, 255, 0.2),
+        0 0 80px rgba(0, 102, 255, 0.05);
 }
 
-table input:disabled {
-    border: none;
+.tabela {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.tabela th {
+    padding: 1rem;
+
+    text-align: left;
+
+    color: #4d94ff;
+
+    border-bottom: 2px solid rgba(0, 102, 255, 0.3);
+}
+
+.tabela td {
+    padding: 1rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabela tbody tr {
+    transition: 0.3s;
+}
+
+.tabela tbody tr:hover {
+    background-color: rgba(0, 102, 255, 0.08);
+}
+
+/* PAGINAÇÃO */
+
+#paginacaoPlanos {
+    display: flex;
+    justify-content: center;
+
+    gap: 0.8rem;
+
+    flex-wrap: wrap;
+}
+
+#paginacaoPlanos button {
+    padding: 0.7rem 1rem;
+
     background: transparent;
-    color: black;
-    cursor: default;
+
+    border: 1px solid #0066ff;
+    border-radius: 10px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-table input:enabled {
-    border: 1px solid #f3b502;
-    border-radius: 4px;
-    background: #1e1e1e;
-    color: white;
+#paginacaoPlanos button:hover {
+    background-color: #0066ff;
+}
+
+#paginacaoPlanos button.ativo {
+    background-color: #0066ff;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+    #registrar-planos form {
+        grid-template-columns: 1fr;
+    }
+
+    .main h2 {
+        font-size: 1.6rem;
+    }
+
+    .table-conteiner {
+        padding: 1rem;
+    }
+
+    .tabela {
+        min-width: 650px;
+    }
+
+    .tabela th,
+    .tabela td {
+        padding: 0.8rem;
+    }
 }

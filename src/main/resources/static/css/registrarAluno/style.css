@@ -1,69 +1,174 @@
-#abatopo {
-    justify-content: center;
-    gap: 5%;
-}
+/* CONTAINER */
 
 #container {
-    width: 100%;
-    height: 85vh;
+    width: min(1200px, 90%);
+
+    min-height: calc(100vh - 100px);
+
+    margin: 3rem auto;
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-
-    position: relative;
+    align-items: center;
 }
+
+/* CARD */
 
 #card-registro {
-    padding: 2%;
-    min-height: 35vh;
-    width: 25%;
-    border-radius: 10px;
-    background-color: #f3b502;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 5px;
+    width: min(550px, 100%);
 
+    background: rgba(0, 0, 0, 0.8);
+
+    border: 1px solid rgba(0, 102, 255, 0.25);
+    border-radius: 25px;
+
+    padding: 3rem;
+
+    box-shadow:
+        0 0 30px rgba(0, 102, 255, 0.2),
+        0 0 80px rgba(0, 102, 255, 0.05);
+}
+
+/* TÍTULO */
+
+#card-registro h2 {
+    text-align: center;
+
+    font-size: 2.2rem;
+    text-transform: uppercase;
+
+    margin-bottom: 2.5rem;
+}
+
+#card-registro h2::after {
+    content: "";
+
+    display: block;
+
+    width: 120px;
+    height: 4px;
+
+    margin: 15px auto 0;
+
+    background-color: #0066ff;
+
+    border-radius: 999px;
+}
+
+/* FORMULÁRIO */
+
+#card-registro form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
-    margin: 0 auto;
+    gap: 1rem;
 }
 
-#inNome {
-    padding: 0% 3%;
-    margin-bottom: 1vh;
-    min-height: 4vh;
-    width: 100%;
-    border: 1px solid #f2d80c;
-    border-radius: 15px;
-    outline: none;
-    font-size: 12px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 5px;
+#card-registro p {
+    font-weight: 600;
+
+    color: rgba(255, 255, 255, 0.9);
 }
 
-#inDataInicio, #inSalvar, #inStatus, #planos {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    min-height: 4vh;
+/* INPUTS E SELECTS */
+
+#card-registro input[type="text"],
+#card-registro input[type="date"],
+#card-registro select {
     width: 100%;
-    border: 1px solid white;
-    border-radius: 15px;
-    outline: none;
-    background-color: #fdc103;
+
+    padding: 1rem;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(0, 102, 255, 0.25);
+    border-radius: 12px;
+
     color: white;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 5px;
 
-    text-align: center;
+    outline: none;
+
+    transition: 0.3s;
 }
+
+#card-registro input[type="text"]:focus,
+#card-registro input[type="date"]:focus,
+#card-registro select:focus {
+    border-color: #0066ff;
+
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.25);
+}
+
+/* DATE INPUT */
+
+#card-registro input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+
+    filter: invert(1);
+}
+
+/* SELECT */
+
+#card-registro select option {
+    background-color: #001427;
+
+    color: white;
+}
+
+/* BOTÃO */
 
 #inSalvar {
-    font-weight: bolder;
+    margin-top: 1rem;
+
+    padding: 1rem;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #0066ff;
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
 #inSalvar:hover {
-    cursor: pointer;
-    background-color: #ffe800;
+    background-color: #0052cc;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.25);
+}
+
+#inSalvar:active {
+    transform: translateY(0);
+}
+
+/* QUEBRAS DE LINHA DO HTML */
+
+form br {
+    display: none;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+    #container {
+        width: 95%;
+
+        margin: 2rem auto;
+    }
+
+    #card-registro {
+        padding: 2rem;
+    }
+
+    #card-registro h2 {
+        font-size: 1.8rem;
+    }
 }
