@@ -62,7 +62,7 @@ body {
 #card-login {
     width: 420px;
 
-    background: rgba(0, 0, 0, 0.8);
+    background: #0f0f0f;
 
     border: 1px solid rgba(0, 102, 255, 0.3);
     border-radius: 25px;
