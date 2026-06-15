@@ -63,8 +63,8 @@ async function getPlanos(pagina = 0) {
         for (const plano of lista) {
             tabHtml += `
         <tr id="linha-${plano.planoId}">
-            <td><input id="nome-${plano.planoId}" value="${plano.nome ?? ""}" disabled></td>
-            <td><input id="cat-${plano.planoId}" value="${plano.categoria ?? ""}" disabled></td>
+            <td><input id="nome-${plano.planoId}" type="text" value="${plano.nome ?? ""}" disabled></td>
+            <td><input id="cat-${plano.planoId}" type="text" value="${plano.categoria ?? ""}" disabled></td>
             <td><input id="valor-${plano.planoId}" type="number" value="${plano.valor ?? ""}" disabled></td>
             <td><input id="freq-${plano.planoId}" type="number" value="${plano.frequenciaAulas ?? 0}" disabled></td>
             <td>
@@ -74,7 +74,7 @@ async function getPlanos(pagina = 0) {
                         <option value="false">Inativo</option>
                     </select>
             </td>
-            <td>
+            <td class="celula-botoes">
                 <button onclick="habilitarEdicaoPlano('${plano.planoId}')">✏️</button>
                 <button id="btnSalvarPlano-${plano.planoId}" style="display:none" onclick="salvarPlano('${plano.planoId}')">💾</button>
                 <button onclick="deletarPlano('${plano.planoId}')">Excluir</button>

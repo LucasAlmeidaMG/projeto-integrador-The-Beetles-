@@ -1,4 +1,3 @@
-/* Reset e Configurações Gerais */
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +13,6 @@ body {
     flex-direction: column;
 }
 
-/* Header - Idêntico ao Dashboard */
 #abatopo {
     width: 100%;
     height: 10vh;
@@ -56,7 +54,6 @@ body {
     color: #0066ff;
 }
 
-/* Container Principal */
 .main {
     max-width: 1200px;
     width: 100%;
@@ -67,7 +64,6 @@ body {
     gap: 60px;
 }
 
-/* Títulos Estilizados (Caixa Alta + Sublinhado Azul) */
 .main h2 {
     text-transform: uppercase;
     text-align: center;
@@ -89,7 +85,6 @@ body {
     background-color: #0052cc;
 }
 
-/* Cards (Seções de Formulário e Tabela) */
 #registrar-planos, .table-conteiner {
     background-color: #1a1a1a;
     border: 1px solid #0d1b2a;
@@ -97,11 +92,10 @@ body {
     box-shadow: 0 0 15px rgba(0, 82, 204, 0.15);
     padding: 40px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Formulário em Grid para manter alinhamento */
 #registrar-planos form {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -116,7 +110,6 @@ body {
     margin: 0;
 }
 
-/* Inputs, Selects do Formulário */
 #registrar-planos input[type="text"],
 #registrar-planos input[type="number"],
 #registrar-planos select {
@@ -138,7 +131,6 @@ body {
     box-shadow: 0 0 5px rgba(0, 82, 204, 0.5);
 }
 
-/* Botão Salvar Plano */
 #inSalvar {
     grid-column: span 2;
     background-color: #0052cc;
@@ -157,14 +149,12 @@ body {
     background-color: #0066ff;
 }
 
-/* Correção para que a quebra de linha do HTML não quebre o Grid */
 #registrar-planos form br {
     display: none;
 }
 
-/* Estilização da Tabela Dinâmica */
 .table-conteiner {
-    padding: 0; /* Remove padding para a tabela encostar nas bordas se necessário */
+    padding: 0;
     overflow-x: auto;
 }
 
@@ -173,9 +163,9 @@ body {
     border-collapse: collapse;
     font-size: 14px;
     text-align: left;
+    table-layout: fixed;
 }
 
-/* Estilos esperados para serem injetados pelo JS na tabela */
 .tabela th {
     color: #0066ff;
     text-transform: uppercase;
@@ -195,20 +185,35 @@ body {
 .tabela tr:last-child td {
     border-bottom: none;
 }
-
-/* Inputs de visualização e botões dentro da tabela (conforme imagem 1) */
-.tabela input[type="text"],
-.tabela input[type="number"] {
-    background-color: #333333;
-    border: 1px solid #444444;
-    color: #ffffff;
-    padding: 6px 10px;
-    border-radius: 4px;
+.tabela select {
     width: 100%;
-    max-width: 120px;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    border-radius: 12px;
+    color: white;
+    appearance: none;
+    cursor: pointer;
 }
 
-/* Botões de Ações na Tabela */
+.tabela input[type="text"],
+.tabela input[type="number"] {
+    width: 100%;
+
+    padding: 0.8rem;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(0, 102, 255, 0.3);
+
+    border-radius: 12px;
+
+    color: white;
+    box-sizing: border-box;
+}
+.tabela .celula-botoes{
+    display:flex;
+}
 .tabela button {
     padding: 0.8rem 1.2rem;
     margin: 0.2rem;
@@ -231,7 +236,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Paginação abaixo da tabela */
 #paginacaoPlanos {
     text-align: center;
     margin-top: 20px;
